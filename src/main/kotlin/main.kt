@@ -25,6 +25,19 @@ suspend fun main() {
         async { p4.eat() }
         async { p5.eat() }
     }
-
     println("Все поели")
+
+    println("а теперь с globalScope.launch")
+    val feed = GlobalScope.launch {
+        async { p1.eat() }
+        async { p2.eat() }
+        async { p3.eat() }
+        async { p4.eat() }
+        async { p5.eat() }
+    }
+    println("Кушать подано, сэр")
+    feed.join()
+    println("Все поели")
+
+
 }
